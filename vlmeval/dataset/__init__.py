@@ -69,7 +69,7 @@ from .mmalignbench import MMAlignBench
 from .utils import *
 from .video_dataset_config import *
 from ..smp import *
-from .OmniDocBench.omnidocbench import OmniDocBench
+from .Omnidocbench.omnidocbench import OmniDocBench
 from .moat import MOAT
 from .GUI.screenspot import ScreenSpot
 from .GUI.screenspot_v2 import ScreenSpotV2

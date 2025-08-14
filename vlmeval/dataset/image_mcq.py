@@ -232,6 +232,7 @@ class ImageMCQDataset(ImageBaseDataset):
         return msgs
 
     def evaluate(self, eval_file, **judge_kwargs):
+        print("Hello this is the evaluate.py")
         if judge_kwargs.get('use_verifier', False):
             return self.evaluate_verifier(eval_file, **judge_kwargs)
         else:
@@ -276,6 +277,7 @@ class ImageMCQDataset(ImageBaseDataset):
             warnings.warn('OPENAI_API_KEY is not set properly, will use exact matching for evaluation')
             model = None
 
+        eval_file = eval_file.replace('\\', '/')  # or use os.path.normpath()
         result_file = eval_file.replace(f'.{suffix}', f'_{name_str}_result.pkl')
 
         data = load(eval_file)
@@ -294,8 +296,10 @@ class ImageMCQDataset(ImageBaseDataset):
             )
 
         if circular:
+            print("Getting the circular eval on the heuristic")
             data = mcq_circular_eval(model, data, meta, nproc, result_file, self.dataset_name)
         else:
+            print("Getting the vanilla eval on the heuristic")
             data = mcq_vanilla_eval(model, data, meta, nproc, result_file, self.dataset_name)
 
         # load split
@@ -315,7 +319,7 @@ class ImageMCQDataset(ImageBaseDataset):
         dump(acc, score_file)
 
         # The piece of code is for internal use, to check vanilla acc (circ0 & all) for circular datasets
-        if circular and os.environ.get('PRINT_VANILLA', None) == '1':
+        if circular and os.environ.get('PRINT_VANILLA', '1') == '1':
             acc_map = {}
             acc_map['circular'] = acc
             # Vanilla Circ0 Acc
@@ -367,6 +371,8 @@ class ImageMCQDataset(ImageBaseDataset):
 
     def evaluate_verifier(self, eval_file, **judge_kwargs):
         # assert dataset is not None
+
+        print("Or im using the evaluate verifier instead")
         dataset_map = {
             'MMBench_TEST_EN': 'MMBench', 'MMBench_TEST_EN_V11': 'MMBench_V11',
             'MMBench_TEST_CN': 'MMBench_CN', 'MMBench_TEST_CN_V11': 'MMBench_CN_V11'

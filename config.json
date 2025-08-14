@@ -9,11 +9,12 @@
         }
     },
     "data": {
-        "JKTDRIVE_Dataset": {
+        "circular_jktdrive": {
             "class": "ImageMCQDataset",
-            "dataset": "jktdrive",
+            "dataset": "circular_jktdrive",
+            "model": "exact_matching",
             "dataset_dir": "D:\\2. Pre-Thesis\\Evaluation\\VLMEvalKit\\custom_datasets",
-            "subset_list": ["jktdrive"]
+            "subset_list": ["circular_jktdrive"]
         }
     }
 }

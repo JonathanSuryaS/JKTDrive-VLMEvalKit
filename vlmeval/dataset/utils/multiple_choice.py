@@ -3,6 +3,7 @@ from ...utils import can_infer, track_progress_rich, can_infer_lego
 from ...smp import *
 import numpy as np
 import re
+import os
 
 MMB_abbrs = {
     'coarse_perception': 'CP',
@@ -525,7 +526,10 @@ def mcq_circular_eval(model, data, meta, nproc, result_file, dataset_name=None):
                 if k not in result:
                     result[k] = v
 
-    tmp_pth = f'/tmp/{timestr()}.xlsx'
+    tmp_dir = "/tmp"
+    os.makedirs(tmp_dir, exist_ok=True)  # Create /tmp if it doesn't exist
+
+    tmp_pth = f'{tmp_dir}/{timestr()}.xlsx'
     dump(data_main, tmp_pth)
     data_main = load(tmp_pth)
     indices = data_main['index']

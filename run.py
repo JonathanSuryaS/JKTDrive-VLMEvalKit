@@ -271,7 +271,7 @@ def main():
                 dist.barrier()
 
             try:
-                result_file_base = f'{model_name}_{dataset_name}.xlsx'
+                result_file_base = f'{model_name}_{dataset_name.upper()}.xlsx'
 
                 if use_config:
                     if WORLD_SIZE > 1:
