@@ -1,20 +1,30 @@
 {
     "model": {
-        "LLaVA_v1_5_7B_Custom": {
-            "class": "LLaVA",
-            "model_path": "liuhaotian/llava-v1.5-7b",
-            "revision": null,
+        "Qwen2.5-VL-7B-Instruct": {
+            "class": "Qwen2.5-VL",
+            "model_path": "C:\\Users\\user\\Documents\\GitHub\\JKTDrive-VLMEvalKit\\Qwen25-VL-7B-Instruct",
             "do_sample": true,
             "temperature": 0.7
         }
     },
-    "data": {
-        "circular_jktdrive": {
+     "data": {
+        "circular_PR": {
             "class": "ImageMCQDataset",
-            "dataset": "circular_jktdrive",
+            "dataset": "circular_PR",
             "model": "exact_matching",
-            "dataset_dir": "D:\\2. Pre-Thesis\\Evaluation\\VLMEvalKit\\custom_datasets",
-            "subset_list": ["circular_jktdrive"]
+            "subset_list": ["circular_PR"]
+        },
+        "circular_SC": {
+            "class": "ImageMCQDataset",
+            "dataset": "circular_SC",
+            "model": "exact_matching",
+            "subset_list": ["circular_SC"]
+        },
+        "circular_UC": {
+            "class": "ImageMCQDataset",
+            "dataset": "circular_UC",
+            "model": "exact_matching",
+            "subset_list": ["circular_UC"]
         }
     }
 }
